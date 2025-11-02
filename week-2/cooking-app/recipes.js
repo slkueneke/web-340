@@ -1,23 +1,31 @@
-/**
- * Author:
- * Date:
- * File Name:
- * Description:
+/*
+ * Author: Shannon Kueneke
+ * Date: November 2, 2025
+ * File Name: recipes.js
+ * Description: modules for listing recipes ingredients, setting a timer and exiting the program
 */
+
+"use strict";
 
 // Define the createRecipe function
 function createRecipe(ingredients) {
-  // TODO: Implement this function
+  let ingredientString = ingredients.join(', ');
+  return "Recipe created with ingredients: " + ingredientString;
 }
 
 // Define the setTimer function
 function setTimer(minutes) {
-  // TODO: Implement this function
+  return "Timer set for " + minutes + " minutes";
 }
 
 // Define the quit function
 function quit() {
-  // TODO: Implement this function
+  return "Program exited";
 }
 
-// TODO: Export the functions
+// Export the functions
+module.exports = {
+  createRecipe,
+  setTimer,
+  quit
+};
