@@ -1,15 +1,16 @@
 {
-  "name": "taco-stand-app",
+  "name": "chapter",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "node src/index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "node test/taco-stand.spec.js"
+    "test": "node test/index.spec.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "type": "commonjs"
 }
