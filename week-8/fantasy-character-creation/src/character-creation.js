@@ -1,46 +1,31 @@
 "use strict";
 
-/*
- * This file allows you to choose between using callbacks or promises (async/await) for handling asynchronous operations.
- *
- * If you want to use callbacks:
- * 1. Uncomment the 'fs' require statement under the "For callbacks" comment.
- * 2. Uncomment the 'createCharacter' and 'getCharacters' functions under the "For callbacks" comment.
- * 3. Uncomment the 'module.exports' line under the "For callbacks" comment.
- *
- * If you want to use promises (async/await):
- * 1. Uncomment the 'fs' require statement under the "For promises" comment.
- * 2. Uncomment the 'createCharacter' and 'getCharacters' functions under the "For promises" comment.
- * 3. Uncomment the 'module.exports' line under the "For promises" comment.
- */
-
-// For callbacks:
-/*
-const fs = require('fs');
-
-function createCharacter(character, callback) {
-  // TODO: Implement this function
-}
-
-function getCharacters(callback) {
-  // TODO: Implement this function
-}
-*/
-
 // For promises:
-/*
-const fs = require('fs').promises;
+const fs = require("fs").promises;
+const { join } = require("path");
+const dir = __dirname; 
+const CHARACTER_FILE = join(dir, "character.txt");
 
-async function createCharacter(character) {
-  // TODO: Implement this function
+async function createCharacter(charClass, charGender, charWeapon) { 
+  try {
+    const data = `Character is a ${charGender} ${charClass} who uses a ${charWeapon} to protect themselves.\n`;
+    await fs.writeFile(CHARACTER_FILE, data/*, { flag: "a"}*/); //looked up that this can append values to the file, but I wasn't sure if we were supposed to do that or not. My tests work either way but left this in to be able to look back and find this flag for future 
+  } catch(err) {
+    console.error("Error writing character:", err);
+    throw(err);
+  }
 }
 
 async function getCharacters() {
-  // TODO: Implement this function
+  try {
+    const data = await fs.readFile(CHARACTER_FILE, "utf8");
+    const characters = data.split("\n").filter((char) => char.trim() !== "");
+    return characters;
+  } catch(err) {
+    console.error("Error reading characters:", err);
+    throw err;
+  }
 }
-*/
 
-// Uncomment the appropriate exports depending on whether you're using callbacks or promises:
 
-// module.exports = { createCharacter, getCharacters }; // For callbacks
-// module.exports = { createCharacter, getCharacters }; // For promises
+module.exports = { createCharacter, getCharacters }; // For promises
